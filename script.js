@@ -52,6 +52,9 @@ shuffledLetters.forEach(letter => {
 selectedButtons = []
 const buttons = document.querySelectorAll('.button-rounded')
 
+const answerContainer = document.getElementById('answer-container');
+console.log("selectedButtons = ", selectedButtons)
+
 buttons.forEach(button => {
     button.addEventListener('click', function() {
         this.classList.toggle('red');
@@ -59,29 +62,10 @@ buttons.forEach(button => {
         console.log(typeof(this.classList))
         if (this.classList.contains('red')){
             selectedButtons.push(button.textContent);
+            const selectedButton = document.createElement('button');
+            selectedButton.textContent = button.textContent;
+            answerContainer.appendChild(selectedButton);
         }
         console.log(selectedButtons);
     });
 });
-
-const answerContainer = document.getElementById('answer-container');
-console.log("selectedButtons = ", selectedButtons)
-selectedButtons.forEach(letter => console.log('aaaa', letter))
-
-for (let i = 0; i < selectedButtons.length; i++){
-    console.log(i)
-}
-
-//selectedButtons.forEach(letter => {
-//    console.log('letter = ', letter)
-//    const selectedButton = document.createElement('button');
-//    selectedButton.textContent = letter;
-//    answerContainer.appendChild(selectedButton);
-// })
-//console.log("answerContainer", answerContainer);
-
-
-
-// for(let i = 0; i < letters.length; i++){
-//     console.log(letters[i].)
-// }
