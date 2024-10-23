@@ -5,7 +5,6 @@ function generateRandomUppercaseLetters(count, guaranteedLetters) {
     while (letters.size < count) {
         const randomIndex = Math.floor(Math.random() * alphabet.length);
         const randomLetter = alphabet[randomIndex];
-
         letters.add(randomLetter); // Set will only add if the letter is not already in it
     }
 
@@ -16,11 +15,11 @@ function generateRandomUppercaseLetters(count, guaranteedLetters) {
         const j = Math.floor(Math.random() * (i + 1));
         [lettersArray[i], lettersArray[j]] = [lettersArray[j], lettersArray[i]];  // Swap elements
     }
-    
     return lettersArray;
 }
 
 // Example usage: Generate 16 random uppercase letters
+
 const randomLetters = generateRandomUppercaseLetters(16, ['L', 'E', 'A', 'O']);
 console.log("randomLetters = ", randomLetters);
 
@@ -50,13 +49,36 @@ shuffledLetters.forEach(letter => {
     buttonContainer.appendChild(button);
 });
 
+selectedButtons = []
+const buttons = document.querySelectorAll('.button-rounded')
 
-buttons = document.querySelectorAll('.button-rounded')
 buttons.forEach(button => {
     button.addEventListener('click', function() {
         this.classList.toggle('red');
+        console.log(this.classList)
+        console.log(typeof(this.classList))
+        if (this.classList.contains('red')){
+            selectedButtons.push(button.textContent);
+        }
+        console.log(selectedButtons);
     });
 });
+
+const answerContainer = document.getElementById('answer-container');
+console.log("selectedButtons = ", selectedButtons)
+selectedButtons.forEach(letter => console.log('aaaa', letter))
+
+for (let i = 0; i < selectedButtons.length; i++){
+    console.log(i)
+}
+
+//selectedButtons.forEach(letter => {
+//    console.log('letter = ', letter)
+//    const selectedButton = document.createElement('button');
+//    selectedButton.textContent = letter;
+//    answerContainer.appendChild(selectedButton);
+// })
+//console.log("answerContainer", answerContainer);
 
 
 
