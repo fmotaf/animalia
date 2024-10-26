@@ -38,6 +38,7 @@ function shuffleArray(array) {
     }
     return array;
 }
+// const LETRAS = ['L', 'E', 'A', 'O']
 
 const shuffledLetters = shuffleArray([...randomLetters]);
 const buttonContainer = document.getElementById('button-container');
@@ -55,6 +56,8 @@ const buttons = document.querySelectorAll('.button-rounded')
 const answerContainer = document.getElementById('answer-container');
 console.log("selectedButtons = ", selectedButtons)
 
+
+// TO CRIANDO DUAS VARIAVEIS selectedButtons E answerContainer, tem que ser uma só!!!
 buttons.forEach(button => {
     button.addEventListener('click', function() {
         this.classList.toggle('red');
@@ -62,10 +65,43 @@ buttons.forEach(button => {
         console.log(typeof(this.classList))
         if (this.classList.contains('red')){
             selectedButtons.push(button.textContent);
-            const selectedButton = document.createElement('button');
+            const selectedButton = document.createElement('p');
+            selectedButton.id = "lastLetter";
             selectedButton.textContent = button.textContent;
             answerContainer.appendChild(selectedButton);
         }
         console.log(selectedButtons);
     });
 });
+
+
+// Funcao para limpar apenas o ultimo caractere
+const clearLastLetter = document.getElementById('clearLastLetter');
+clearLastLetter.addEventListener('click', function() {
+    const answerContainer = document.getElementById('answer-container');
+    let removedLetter = selectedButtons.pop();
+    // let lastLetter = document.getElementById("lastLetter");
+    answerContainer.removeChild(answerContainer.lastChild);
+    // const letterObj = JSON.parse(`{"letter": ${removedLetter}}`);
+    console.log(">>>", removedLetter);
+    console.log(selectedButtons);
+    // console.log(">>>", typeof(removedLetter));
+    // const selectedButton = document.createElement('p');
+    // selectedButton.textContent = removedLetter.textContent;
+    // answerContainer.removeChild(removedLetter);
+})
+
+
+// Funcao para limpar todos os caracteres
+const clearAllLetters = document.getElementById('clearAll');
+clearAllLetters.addEventListener('click', function() {
+    const answerContainer = document.getElementById("answer-container");
+    while (answerContainer.firstChild) {
+        answerContainer.removeChild(answerContainer.firstChild);
+        selectedButtons = [];
+        console.log(selectedButtons);
+    }
+
+})
+
+
