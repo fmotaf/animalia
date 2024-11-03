@@ -1,0 +1,64 @@
+/* Gray gradient for the body background */
+/* Radial gray gradient for the body background */
+body {
+    background: radial-gradient(circle, #e0e0e0, #5a5a5a); /* Radial gradient from light gray to dark gray */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    font-family: Arial, sans-serif; /* Optional: set a font family */
+    height: 100vh; /* Ensure background covers full viewport height */
+}
+
+
+/* Styles for container with solid background (if needed) */
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Padding adjustment */
+    max-width: 600px;
+}
+
+.button-rounded {
+    padding: 10px 20px;
+    background-color: white; /* White background for buttons */
+    color: black; /* Black text */
+    border: none; /* No border */
+    border-radius: 50px; /* Fully rounded */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.button-rounded:hover {
+    background-color: #e0e0e0; /* Light gray on hover */
+}
+
+.button-rounded.red {
+    background-color: #ff4d4d; /* Red background for specific state */
+}
+
+img {
+    max-width: 100%;
+    height: auto; /* Maintain image aspect ratio */
+}
+
+@media (max-width: 768px) {
+    .column {
+        width: 100%; /* Columns stack on smaller screens */
+    }
+}
+
+/* Default column styles */
+.column {
+    width: 100%;
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 768px) {
+    .column {
+        width: 50%;
+    }
+}
+
+#button-container {
+    max-width: 600px;
+}

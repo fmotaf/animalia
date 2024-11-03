@@ -1,5 +1,5 @@
-function generateRandomUppercaseLetters(count, guaranteedLetters) {
-    const letters = new Set(guaranteedLetters); // Start with guaranteed letters in a Set to ensure uniqueness
+function generateRandomUppercaseLetters(count) {
+    const letters = new Set(); // Start with guaranteed letters in a Set to ensure uniqueness
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // Keep adding random letters until the Set has the required number of unique letters
     while (letters.size < count) {
@@ -19,15 +19,8 @@ function generateRandomUppercaseLetters(count, guaranteedLetters) {
 }
 
 // Example usage: Generate 16 random uppercase letters
-
-const randomLetters = generateRandomUppercaseLetters(16, ['L', 'E', 'A', 'O']);
+const randomLetters = generateRandomUppercaseLetters(26);
 console.log("randomLetters = ", randomLetters);
-
-// const letters = []
-// letters.forEach(letter => {
-//     letters.push(letter.innerHTML)
-// })
-// console.log("letters = ", letters)
 
 
 // Function to shuffle the letters array
@@ -60,16 +53,16 @@ console.log("selectedButtons = ", selectedButtons)
 // TO CRIANDO DUAS VARIAVEIS selectedButtons E answerContainer, tem que ser uma só!!!
 buttons.forEach(button => {
     button.addEventListener('click', function() {
-        this.classList.toggle('red');
+        // this.classList.toggle('red');
         console.log(this.classList)
         console.log(typeof(this.classList))
-        if (this.classList.contains('red')){
-            selectedButtons.push(button.textContent);
-            const selectedButton = document.createElement('p');
-            selectedButton.id = "lastLetter";
-            selectedButton.textContent = button.textContent;
-            answerContainer.appendChild(selectedButton);
-        }
+        // if (this.classList.contains('red')){
+        selectedButtons.push(button.textContent);
+        const selectedButton = document.createElement('p');
+        selectedButton.id = "lastLetter";
+        selectedButton.textContent = button.textContent;
+        answerContainer.innerHTML += selectedButton.textContent;
+        // }
         console.log(selectedButtons);
     });
 });
@@ -80,15 +73,12 @@ const clearLastLetter = document.getElementById('clearLastLetter');
 clearLastLetter.addEventListener('click', function() {
     const answerContainer = document.getElementById('answer-container');
     let removedLetter = selectedButtons.pop();
-    // let lastLetter = document.getElementById("lastLetter");
-    answerContainer.removeChild(answerContainer.lastChild);
-    // const letterObj = JSON.parse(`{"letter": ${removedLetter}}`);
+    answerContainer.innerHTML = answerContainer.innerHTML.slice(0, -1);
+    // answerContainer.removeChild(answerContainer.lastChild);
+
     console.log(">>>", removedLetter);
     console.log(selectedButtons);
-    // console.log(">>>", typeof(removedLetter));
-    // const selectedButton = document.createElement('p');
-    // selectedButton.textContent = removedLetter.textContent;
-    // answerContainer.removeChild(removedLetter);
+
 })
 
 
