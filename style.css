@@ -8,6 +8,19 @@ body {
     height: 100vh; /* Ensure background covers full viewport height */
 }
 
+#animal-image {
+    filter: blur(30px); /* Start with a significant blur */
+    transition: filter 0.3s ease; /* Smooth transition when changing blur */
+}
+
+
+/*#animal-image {*/
+/*    width: 100%; !* Ensure it fills the container *!*/
+/*    transform: scale(5); !* Zoom into the image *!*/
+/*    object-position: 50% 50%; !* Center position initially *!*/
+/*    transition: transform 0.3s ease, object-position 0.3s ease;*/
+/*}*/
+
 
 /* Styles for container with solid background (if needed) */
 .container {
@@ -15,6 +28,7 @@ body {
     flex-direction: column;
     padding: 20px; /* Padding adjustment */
     max-width: 600px;
+    overflow: hidden; /* Prevent the zoomed image from affecting layout */
 }
 
 .button-rounded {

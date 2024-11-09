@@ -1,37 +1,11 @@
-function generateRandomUppercaseLetters(count) {
-    const letters = new Set(); // Start with guaranteed letters in a Set to ensure uniqueness
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    // Keep adding random letters until the Set has the required number of unique letters
-    while (letters.size < count) {
-        const randomIndex = Math.floor(Math.random() * alphabet.length);
-        const randomLetter = alphabet[randomIndex];
-        letters.add(randomLetter); // Set will only add if the letter is not already in it
-    }
+import { validateAnswer, shuffleArray, generateRandomUppercaseLetters } from './utils.js'; // Import functions from utils.js
 
-    // Convert the Set to an array
-    const lettersArray = Array.from(letters);
-    // Shuffle the array to mix guaranteed and random letters
-    for (let i = lettersArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [lettersArray[i], lettersArray[j]] = [lettersArray[j], lettersArray[i]];  // Swap elements
-    }
-    return lettersArray;
-}
+const CORRECT_ANSWER = ['L', 'E', 'A', 'O'];
 
 // Example usage: Generate 16 random uppercase letters
 const randomLetters = generateRandomUppercaseLetters(26);
 console.log("randomLetters = ", randomLetters);
 
-
-// Function to shuffle the letters array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
-    return array;
-}
-// const LETRAS = ['L', 'E', 'A', 'O']
 
 const shuffledLetters = shuffleArray([...randomLetters]);
 const buttonContainer = document.getElementById('button-container');
@@ -43,7 +17,7 @@ shuffledLetters.forEach(letter => {
     buttonContainer.appendChild(button);
 });
 
-selectedButtons = []
+let selectedButtons = []
 const buttons = document.querySelectorAll('.button-rounded')
 
 const answerContainer = document.getElementById('answer-container');
@@ -93,5 +67,4 @@ clearAllLetters.addEventListener('click', function() {
     }
 
 })
-
 
