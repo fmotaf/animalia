@@ -68,3 +68,7 @@ clearAllLetters.addEventListener('click', function() {
 
 })
 
+const validateAnswerBtn = document.getElementById("validateAnswer");
+validateAnswerBtn.addEventListener('click', function() {
+    validateAnswer(selectedButtons, CORRECT_ANSWER);
+})
