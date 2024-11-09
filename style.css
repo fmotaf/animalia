@@ -31,15 +31,45 @@ body {
     overflow: hidden; /* Prevent the zoomed image from affecting layout */
 }
 
+/* Center the button container */
+#button-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);  /* Create 7 columns for the buttons */
+    gap: 10px;  /* Space between buttons */
+    max-width: 600px;
+    margin: 0 auto; /* Center the container itself on the page */
+    padding: 10px;
+}
+
+/* Style for the buttons */
 .button-rounded {
-    padding: 10px 20px;
-    background-color: white; /* White background for buttons */
-    color: black; /* Black text */
-    border: none; /* No border */
-    border-radius: 50px; /* Fully rounded */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Font size */
-    transition: background-color 0.3s ease; /* Smooth transition */
+    padding: 12px 24px;  /* Adjust padding for larger buttons */
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px; /* Increase font size for better readability */
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+/* Hover effect for buttons */
+.button-rounded:hover {
+    background-color: #e0e0e0;
+}
+
+/* Make the button container more mobile-friendly */
+@media (max-width: 768px) {
+    .button-rounded {
+        padding: 10px 20px; /* Reduce padding on smaller screens */
+        font-size: 14px; /* Smaller font size for mobile */
+        margin: 6px; /* Smaller margin for mobile */
+    }
+
+    #button-container {
+        grid-template-columns: repeat(4, 1fr); /* Reduce to 4 columns on smaller screens */
+    }
 }
 
 .button-rounded:hover {
@@ -71,8 +101,4 @@ img {
     .column {
         width: 50%;
     }
-}
-
-#button-container {
-    max-width: 600px;
 }
