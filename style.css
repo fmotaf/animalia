@@ -23,12 +23,21 @@ body {
 
 
 /* Styles for container with solid background (if needed) */
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    padding: 20px; !* Padding adjustment *!*/
+/*    max-width: 600px;*/
+/*    overflow: hidden; !* Prevent the zoomed image from affecting layout *!*/
+/*}*/
 .container {
     display: flex;
-    flex-direction: column;
-    padding: 20px; /* Padding adjustment */
-    max-width: 600px;
-    overflow: hidden; /* Prevent the zoomed image from affecting layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60vh; /* Make container take up full viewport height */
+    max-width: 600px; /* Optional: Limit width if necessary */
+    margin: 0 auto; /* Center container horizontally in the body */
+    /*padding: 5%;*/
 }
 
 /* Center the button container */
@@ -53,6 +62,15 @@ body {
     transition: background-color 0.3s ease;
     text-align: center;
 }
+
+/* Container for the action buttons */
+#action-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 15px; /* Space between action buttons */
+    margin-top: 20px; /* Space above action buttons */
+}
+
 
 /* Hover effect for buttons */
 .button-rounded:hover {
@@ -102,3 +120,4 @@ img {
         width: 50%;
     }
 }
+

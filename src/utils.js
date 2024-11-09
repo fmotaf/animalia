@@ -42,3 +42,7 @@ export function validateAnswer(selectedButtons, CORRECT_ANSWER) {
     }
 }
 
+export function revealImage() {
+    const animalImage = document.getElementById('animal-image');
+    animalImage.style.filter = 'blur(0)'; // Remove blur to reveal image
+}

@@ -1,4 +1,4 @@
-import { validateAnswer, shuffleArray, generateRandomUppercaseLetters } from './utils.js'; // Import functions from utils.js
+import {validateAnswer, shuffleArray, generateRandomUppercaseLetters, revealImage} from './utils.js'; // Import functions from utils.js
 
 const CORRECT_ANSWER = ['L', 'E', 'A', 'O'];
 
@@ -71,4 +71,5 @@ clearAllLetters.addEventListener('click', function() {
 const validateAnswerBtn = document.getElementById("validateAnswer");
 validateAnswerBtn.addEventListener('click', function() {
     validateAnswer(selectedButtons, CORRECT_ANSWER);
+    revealImage();
 })
