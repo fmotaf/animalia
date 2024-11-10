@@ -13,6 +13,39 @@ body {
     transition: filter 0.3s ease; /* Smooth transition when changing blur */
 }
 
+/* Centralizar o container principal e aplicar o estilo arredondado */
+#answer-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    min-height: 50px; /* Altura para aparência de input */
+    max-width: 400px; /* Largura máxima do campo */
+    padding: 12px 20px; /* Espaçamento interno */
+    margin: 20px auto; /* Centralizar horizontalmente */
+    border: 2px solid #ccc; /* Borda leve */
+    border-radius: 25px; /* Arredondamento semelhante ao Material UI */
+    background-color: #ffffff; /* Fundo branco */
+    font-size: 18px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito de foco para realce */
+#answer-container:focus-within {
+    border-color: #3f51b5; /* Azul Material UI ao focar */
+    box-shadow: 0px 6px 12px rgba(63, 81, 181, 0.2); /* Intensifica a sombra */
+}
+
+/* Centralizar o conteúdo do body */
+/*body {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100vh; !* Altura total da viewport *!*/
+/*    margin: 0;*/
+/*    background: radial-gradient(circle, #e0e0e0, #5a5a5a); !* Fundo gradiente *!*/
+/*}*/
 
 /*#animal-image {*/
 /*    width: 100%; !* Ensure it fills the container *!*/
@@ -62,6 +95,21 @@ body {
     transition: background-color 0.3s ease;
     text-align: center;
 }
+
+/* Style for the buttons */
+.button-rounded-answer {
+    padding: 12px 24px;  /* Adjust padding for larger buttons */
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px; /* Increase font size for better readability */
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+
 
 /* Container for the action buttons */
 #action-buttons {

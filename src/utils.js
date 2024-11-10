@@ -20,7 +20,7 @@ export function generateRandomUppercaseLetters(count) {
 }
 
 
-// Function to shuffle the letters array
+// Function to shuffle the letters array`
 export function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -37,6 +37,7 @@ export function validateAnswer(selectedButtons, CORRECT_ANSWER) {
 
     if (playerAnswer === correctAnswerStr) {
         alert("Correct! You've guessed the animal!");
+        revealImage();
     } else {
         alert("Incorrect! Try again.");
     }
