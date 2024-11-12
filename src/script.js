@@ -1,5 +1,6 @@
 import {validateAnswer, shuffleArray, generateRandomUppercaseLetters, revealImage} from './utils.js'; // Import functions from utils.js
 
+
 const CORRECT_ANSWER = ['L', 'E', 'A', 'O'];
 
 // Example usage: Generate 16 random uppercase letters
@@ -71,6 +72,7 @@ buttons.forEach(button => {
 //
 // })
 
+
 // Funcao para limpar alguns caracteres
 const clearLastLetter = document.getElementById('clearLastLetter');
 clearLastLetter.addEventListener('click', function() {
@@ -93,8 +95,8 @@ clearAllLetters.addEventListener('click', function() {
         selectedButtons = [];
         console.log(selectedButtons);
     }
-
 })
+
 
 const validateAnswerBtn = document.getElementById("validateAnswer");
 validateAnswerBtn.addEventListener('click', function() {

@@ -1,3 +1,5 @@
+
+
 // function to generate the letters and display in screen
 export function generateRandomUppercaseLetters(count) {
     const letters = new Set(); // Start with guaranteed letters in a Set to ensure uniqueness

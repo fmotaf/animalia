@@ -63,6 +63,7 @@ body {
 /*    max-width: 600px;*/
 /*    overflow: hidden; !* Prevent the zoomed image from affecting layout *!*/
 /*}*/
+
 .container {
     display: flex;
     justify-content: center; /* Center horizontally */
@@ -70,11 +71,21 @@ body {
     height: 60vh; /* Make container take up full viewport height */
     max-width: 600px; /* Optional: Limit width if necessary */
     margin: 0 auto; /* Center container horizontally in the body */
-    /*padding: 5%;*/
+    padding: 5%;
+    overflow: hidden; /* Prevent the zoomed image from affecting layout */
+}
+
+.animal-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Padding adjustment */
+    max-width: 600px;
+    overflow: hidden; /* Prevent the zoomed image from affecting layout */
 }
 
 /* Center the button container */
 #button-container {
+    margin-top: 40vh;
     display: grid;
     grid-template-columns: repeat(7, 1fr);  /* Create 7 columns for the buttons */
     gap: 10px;  /* Space between buttons */
@@ -91,12 +102,12 @@ body {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 18px; /* Increase font size for better readability */
+    font-size: 12px; /* Increase font size for better readability */
     transition: background-color 0.3s ease;
     text-align: center;
 }
 
-/* Style for the buttons */
+/* Style for the answer buttons */
 .button-rounded-answer {
     padding: 12px 24px;  /* Adjust padding for larger buttons */
     background-color: white;
@@ -104,12 +115,10 @@ body {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 18px; /* Increase font size for better readability */
+    font-size: 12px; /* Increase font size for better readability */
     transition: background-color 0.3s ease;
     text-align: center;
 }
-
-
 
 /* Container for the action buttons */
 #action-buttons {
@@ -118,7 +127,6 @@ body {
     gap: 15px; /* Space between action buttons */
     margin-top: 20px; /* Space above action buttons */
 }
-
 
 /* Hover effect for buttons */
 .button-rounded:hover {
