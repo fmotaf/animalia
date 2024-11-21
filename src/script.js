@@ -1,5 +1,40 @@
 import {validateAnswer, shuffleArray, generateRandomUppercaseLetters, revealImage} from './utils.js'; // Import functions from utils.js
 
+const gamePhases = [
+    { image: "assets/images/gorilla.png", answer: ["G", "O", "R", "I", "L", "A"] },
+    { image: "fox.png", answer: ["F", "O", "X"] },
+];
+let currentPhase = 0;
+
+function updateGamePhase() {
+    const animalImage = document.getElementById("animal-image");
+    const answerArea = document.getElementById("answer-container");
+    const currentImage = gamePhases[currentPhase].image;
+
+    console.log("Loading image:", currentImage);
+    // Update image and clear the answer area
+    animalImage.src = gamePhases[currentPhase].image;
+    answerArea.textContent = ""; // Reset the guessed characters
+}
+
+function checkAnswer(userAnswer) {
+    if (userAnswer === gamePhases[currentPhase].answer) {
+        alert("Correct!");
+        nextPhase();
+    } else {
+        alert("Try again!");
+    }
+}
+
+function nextPhase() {
+    if (currentPhase < gamePhases.length - 1) {
+        currentPhase++;
+        updateGamePhase();
+    } else {
+        // End of the game logic
+        console.log("Game Over!");
+    }
+}
 
 const CORRECT_ANSWER = ['L', 'E', 'A', 'O'];
 
@@ -40,38 +75,6 @@ buttons.forEach(button => {
     });
 });
 
-// function removeLastLetter(element) {
-//     console.log("element = ", element)
-//     console.log("element.innerHTML = ", element.innerHTML)
-//     element.innerHTML = element.innerHTML.slice(0, -1);
-// }
-
-// const clearLastLetter = document.getElementById('clearLastLetter');
-// clearLastLetter.addEventListener('click', () => removeLastLetter(answerContainer));
-
-// // Funcao para limpar apenas o ultimo caractere
-// const clearLastLetter = document.getElementById('clearLastLetter');
-// clearLastLetter.addEventListener('click', function() {
-//     // const answerContainer = document.getElementById('answer-container');
-//     console.log("selected buttons before = ", selectedButtons);
-//     selectedButtons.pop();
-//     console.log("selected buttons = ", selectedButtons);
-//     answerContainer.innerText = '';
-//     selectedButtons.forEach(letter => {
-//         console.log(letter);
-//         answerContainer.innerText += letter;
-//         console.log(answerContainer.innerText);
-//     })
-//
-//     // answerContainer.innerText = removedLetter;
-//     // answerContainer.innerText = answerContainer.innerText.substring(0, answerContainer.innerHTML.length -1);
-//     // answerContainer.removeChild(answerContainer.lastChild);
-//     console.log("--->>>", answerContainer.firstChild);
-//     console.log(">>>", answerContainer.innerText);
-//     console.log(selectedButtons);
-//
-// })
-
 
 // Funcao para limpar alguns caracteres
 const clearLastLetter = document.getElementById('clearLastLetter');
@@ -102,3 +105,10 @@ const validateAnswerBtn = document.getElementById("validateAnswer");
 validateAnswerBtn.addEventListener('click', function() {
     validateAnswer(selectedButtons, CORRECT_ANSWER);
 })
+
+function startGame() {
+    updateGamePhase();
+}
+
+startGame();
+

@@ -6,11 +6,12 @@
     <title>Animalia</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
     <body>
         <div class="container">
-            <img id="animal-image" src="assets/images/lion.png">
+            <img id="animal-image" alt="Animal a ser adivinhado">
         </div>
 
         <div id="button-container">
@@ -26,34 +27,52 @@
         </div>
 
         <script type="module" src="./src/script.js"></script>
-        <script>
-            // Initialize Supabase client
-            const supabaseUrl = 'https://bzpoawgwdbfjgzoghsxu.supabase.co/storage/v1/s3';
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6cG9hd2d3ZGJmamd6b2doc3h1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEyODMyODYsImV4cCI6MjA0Njg1OTI4Nn0.lHlSRPZ2iIc4PYYL-Wu9HMyByE388nYlIIfgcSfmjJk';
-            const supabase = createClient(supabaseUrl, supabaseKey);
+        <script defer>
+            // import { createClient } from '@supabase/supabase-js'
+            // const { createClient } = require('@supabase/supabase-js')
 
-            console.log(supabaseUrl, supabaseKey)
-            // async function getImageUrlsFromBucket() {
-            //     const { data, error } = await supabase.storage
-            //         .from('animal-images') // Replace with your bucket name
-            //         .list('', { limit: 100 });
-            //
-            //     if (error) {
-            //         console.error("Error fetching image list:", error.message);
-            //         return [];
-            //     }
-            //
-            //     // Map over files and create public URLs for each
-            //     return data.map(file =>
-            //         supabase.storage.from('animal-images').getPublicUrl(file.name).publicURL
-            //     );
-            // }
+            async function loadBuckets() {
+                const supabaseUrl = 'https://bzpoawgwdbfjgzoghsxu.supabase.co/storage/v1/s3';
+                const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6cG9hd2d3ZGJmamd6b2doc3h1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEyODMyODYsImV4cCI6MjA0Njg1OTI4Nn0.lHlSRPZ2iIc4PYYL-Wu9HMyByE388nYlIIfgcSfmjJk';
 
-            async function listStorage(){
-                return supabase.storage.listBuckets();
+                // const supabaseAccessKeyID = 'a2f891cc1162122231691928e85b2947'
+                // const supabaseSecretAccessKey = 'aaf5049f3a97fe1ea4f0cbeecd80f8a272fde8cf88b8158cdec519acef45ff30'
+
+                const supabaseClient =  supabase.createClient(supabaseUrl, supabaseApiKey)
+                // console.log(supabaseUrl, supabaseApiKey); // Now this should show in the console
+                // const { data, error } = supabaseClient.storage.listBuckets()
+                // console.log("asdlkasldk", {data, error})
+                // return {data, error}
+
+                // try {
+                //     const { data, error } = await supabaseClient.storage.listBuckets();
+                //     console.log("Buckets:", data);
+                //     if (error) {
+                //         console.error("Error listing buckets:", error);
+                //     }
+                //     return { data, error };
+                // } catch (error) {
+                //     console.error("Unexpected error:", error);
+                // }
+                const { data, error } = await supabaseClient
+                    .storage
+                    .listBuckets()
+                console.log('---->', {data, error})
+                return {data, error}
             }
-            let {data, error} = listStorage()
-            console.log("asdlaksdla", data, error)
+
+            window.addEventListener('load', () => {
+                const supabaseUrl = 'https://bzpoawgwdbfjgzoghsxu.supabase.co/storage/v1/s3';
+                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6cG9hd2d3ZGJmamd6b2doc3h1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEyODMyODYsImV4cCI6MjA0Njg1OTI4Nn0.lHlSRPZ2iIc4PYYL-Wu9HMyByE388nYlIIfgcSfmjJk';
+
+                // Initialize the Supabase client with a different variable name to avoid shadowing
+
+                // const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+                // console.log(supabaseUrl, supabaseKey); // Now this should show in the console
+                // console.log(supabaseClient); // Check that the client is initialized correctly
+                let x = loadBuckets();
+                console.log(x);
+            });
         </script>
     </body>
 </html>
