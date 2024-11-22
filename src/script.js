@@ -1,11 +1,36 @@
 import { validateAnswer, shuffleArray, generateRandomUppercaseLetters } from './utils.js';
 
 const gamePhases = [
-    { image: "assets/images/fox.png", answer: ["F", "O", "X"] },
+    { image: "assets/images/fox.png", answer: ["R", "A", "P", "O", "S", "A"] },
     { image: "assets/images/gorila2.png", answer: ["G", "O", "R", "I", "L", "A"] },
-
+    { image: "assets/images/alligator.png", answer: ["J", "A", "C", "A", "R", "E"] },
+    { image: "assets/images/bear.png", answer: ["U","R", "S", "O"] },
+    { image: "assets/images/elephant.png", answer: ["E", "L", "E", "F", "A", "N", "T", "E"] },
+    { image: "assets/images/lion.png", answer: ["L", "E", "A", "O"] },
+    { image: "assets/images/owl.png", answer: ["C", "O", "R", "U", "J", "A"] }
 ];
 let currentPhase = 0;
+
+function saveGameState() {
+    const gameState = {
+        currentPhase,
+        selectedButtons,
+    };
+    localStorage.setItem('animaliaGameState', JSON.stringify(gameState));
+    console.log("Game state saved:", gameState);
+}
+
+function loadGameState() {
+    const savedState = localStorage.getItem('animaliaGameState');
+    if (savedState) {
+        const { currentPhase: savedPhase, selectedButtons: savedButtons } = JSON.parse(savedState);
+        currentPhase = savedPhase;
+        selectedButtons = savedButtons || [];
+        console.log("Game state loaded:", { currentPhase, selectedButtons });
+    } else {
+        console.log("No saved game state found. Starting fresh.");
+    }
+}
 
 function updateGamePhase() {
     const animalImage = document.getElementById("animal-image");
@@ -33,8 +58,10 @@ function nextPhase() {
         currentPhase++;
         selectedButtons = [];
         updateGamePhase();
+        saveGameState(); // Save the state after updating the phase
     } else {
         alert("Game Over!");
+        localStorage.removeItem('animaliaGameState'); // Clear the state at the end of the game
     }
 }
 
@@ -96,6 +123,7 @@ validateAnswerBtn.addEventListener('click', function () {
 
 // Start the game
 function startGame() {
+    loadGameState(); // Load saved state
     updateGamePhase();
 }
 
