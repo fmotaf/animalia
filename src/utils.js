@@ -40,8 +40,10 @@ export function validateAnswer(selectedButtons, CORRECT_ANSWER) {
     if (playerAnswer === correctAnswerStr) {
         alert("Correct! You've guessed the animal!");
         revealImage();
+        return true;
     } else {
         alert("Incorrect! Try again.");
+        return false;
     }
 }
 
