@@ -10,69 +10,30 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
     <body>
-        <div class="container">
-            <img id="animal-image" alt="Animal a ser adivinhado">
+        <div id="login-screen" class="login-screen">
+            <h2>Enter Your Nickname</h2>
+            <input type="text" id="nickname-input" placeholder="Your nickname" />
+            <button id="start-game-btn">Start Game</button>
         </div>
+        <div id="game-screen" class="hidden">
+            <!-- Existing game content here -->
 
-        <div id="button-container">
+
+            <div class="container">
+                <img id="animal-image" alt="Animal a ser adivinhado">
+            </div>
+
+            <div id="button-container">
+            </div>
+
+            <div id="answer-container">
+            </div>
+
+            <div id="action-buttons">
+                <button class="button-rounded-answer" id="clearLastLetter">x</button>
+                <button class="button-rounded-answer" id="clearAll">Limpar palavra</button>
+                <button class="button-rounded-answer" id="validateAnswer" style="background: green"><i class="fa fa-check" aria-hidden="true"></i></button>
+            </div>
         </div>
-
-        <div id="answer-container">
-        </div>
-
-        <div id="action-buttons">
-            <button class="button-rounded-answer" id="clearLastLetter">x</button>
-            <button class="button-rounded-answer" id="clearAll">Limpar palavra</button>
-            <button class="button-rounded-answer" id="validateAnswer" style="background: green"><i class="fa fa-check" aria-hidden="true"></i></button>
-        </div>
-
-        <script type="module" src="./src/script.js"></script>
-        <script defer>
-            // import { createClient } from '@supabase/supabase-js'
-            // const { createClient } = require('@supabase/supabase-js')
-
-            async function loadBuckets() {
-                const supabaseUrl = 'https://bzpoawgwdbfjgzoghsxu.supabase.co/storage/v1/s3';
-                const supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6cG9hd2d3ZGJmamd6b2doc3h1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEyODMyODYsImV4cCI6MjA0Njg1OTI4Nn0.lHlSRPZ2iIc4PYYL-Wu9HMyByE388nYlIIfgcSfmjJk';
-
-                // const supabaseAccessKeyID = 'a2f891cc1162122231691928e85b2947'
-                // const supabaseSecretAccessKey = 'aaf5049f3a97fe1ea4f0cbeecd80f8a272fde8cf88b8158cdec519acef45ff30'
-
-                const supabaseClient =  supabase.createClient(supabaseUrl, supabaseApiKey)
-                // console.log(supabaseUrl, supabaseApiKey); // Now this should show in the console
-                // const { data, error } = supabaseClient.storage.listBuckets()
-                // console.log("asdlkasldk", {data, error})
-                // return {data, error}
-
-                // try {
-                //     const { data, error } = await supabaseClient.storage.listBuckets();
-                //     console.log("Buckets:", data);
-                //     if (error) {
-                //         console.error("Error listing buckets:", error);
-                //     }
-                //     return { data, error };
-                // } catch (error) {
-                //     console.error("Unexpected error:", error);
-                // }
-                const { data, error } = await supabaseClient
-                    .storage
-                    .listBuckets()
-                console.log('---->', {data, error})
-                return {data, error}
-            }
-
-            window.addEventListener('load', () => {
-                const supabaseUrl = 'https://bzpoawgwdbfjgzoghsxu.supabase.co/storage/v1/s3';
-                const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6cG9hd2d3ZGJmamd6b2doc3h1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEyODMyODYsImV4cCI6MjA0Njg1OTI4Nn0.lHlSRPZ2iIc4PYYL-Wu9HMyByE388nYlIIfgcSfmjJk';
-
-                // Initialize the Supabase client with a different variable name to avoid shadowing
-
-                // const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-                // console.log(supabaseUrl, supabaseKey); // Now this should show in the console
-                // console.log(supabaseClient); // Check that the client is initialized correctly
-                let x = loadBuckets();
-                console.log(x);
-            });
-        </script>
     </body>
 </html>

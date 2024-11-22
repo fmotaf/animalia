@@ -1,3 +1,28 @@
+.hidden {
+    display: none;
+}
+
+.login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#nickname-input {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+#start-game-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 /* Gray gradient for the body background */
 /* Radial gray gradient for the body background */
 body {

@@ -121,9 +121,51 @@ validateAnswerBtn.addEventListener('click', function () {
     }
 });
 
+function displayNickname() {
+    const nicknameDisplay = document.getElementById('nickname-display');
+    const savedNickname = localStorage.getItem('animaliaNickname');
+    if (savedNickname) {
+        nicknameDisplay.textContent = savedNickname;
+    }
+}
+
+function showGameScreen() {
+    const loginScreen = document.getElementById('login-screen');
+    const gameScreen = document.getElementById('game-screen');
+    loginScreen.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
+}
+
+function saveNickname() {
+    const nicknameInput = document.getElementById('nickname-input');
+    const nickname = nicknameInput.value.trim();
+
+    if (nickname) {
+        localStorage.setItem('animaliaNickname', nickname);
+        console.log(`Nickname saved: ${nickname}`);
+        showGameScreen();
+    } else {
+        alert("Please enter a nickname to proceed.");
+    }
+}
+
+// Attach event listener to the login button
+const startGameBtn = document.getElementById('start-game-btn');
+startGameBtn.addEventListener('click', saveNickname);
+
+// Check if a nickname already exists
+document.addEventListener('DOMContentLoaded', function () {
+    const savedNickname = localStorage.getItem('animaliaNickname');
+    if (savedNickname) {
+        console.log(`Welcome back, ${savedNickname}!`);
+        showGameScreen();
+    }
+});
+
 // Start the game
 function startGame() {
     loadGameState(); // Load saved state
+    displayNickname(); // Show the nickname on the game screen
     updateGamePhase();
 }
 
