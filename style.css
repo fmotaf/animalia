@@ -11,6 +11,21 @@
     background-color: #f0f0f0;
 }
 
+#nickname-display {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333; /* Dark text color */
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 10px 20px; /* Add spacing around text */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ccc; /* Subtle border for separation */
+    text-align: center; /* Center-align text */
+    margin: 10px auto; /* Center on the page and add spacing */
+    width: fit-content; /* Adjust to the content width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
 #nickname-input {
     margin: 10px;
     padding: 10px;

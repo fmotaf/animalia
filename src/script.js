@@ -125,13 +125,14 @@ function displayNickname() {
     const nicknameDisplay = document.getElementById('nickname-display');
     const savedNickname = localStorage.getItem('animaliaNickname');
     if (savedNickname) {
-        nicknameDisplay.textContent = savedNickname;
+        nicknameDisplay.textContent = savedNickname+" está jogando!\nPontos: ";
     }
 }
 
 function showGameScreen() {
     const loginScreen = document.getElementById('login-screen');
     const gameScreen = document.getElementById('game-screen');
+    loginScreen.classList.remove('login-screen');
     loginScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 }
