@@ -17,7 +17,7 @@ let points = 0;
 // Function to update points display
 function updatePointsDisplay() {
     const pointsDisplay = document.getElementById('points-display');
-    pointsDisplay.textContent = `Points: ${points}`;
+    pointsDisplay.textContent = `Pontos: ${points}`;
 }
 
 // Function to handle correct answer
@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function startGame() {
     loadGameState(); // Load saved state
     displayNickname(); // Show the nickname on the game screen
+    updatePointsDisplay();
     updateGamePhase();
 }
 
