@@ -1,219 +1,192 @@
-.hidden {
-    display: none;
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.login-screen {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-
-#nickname-display {
     font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333; /* Dark text color */
-    background-color: #f9f9f9; /* Light background for contrast */
-    padding: 10px 20px; /* Add spacing around text */
-    border-radius: 8px; /* Rounded corners */
-    border: 1px solid #ccc; /* Subtle border for separation */
-    text-align: center; /* Center-align text */
-    margin: 10px auto; /* Center on the page and add spacing */
-    width: fit-content; /* Adjust to the content width */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    background-color: #f0f0f0;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent vertical scrolling */
 }
 
-#nickname-input {
-    margin: 10px;
-    padding: 10px;
-    font-size: 1.2rem;
-}
-
-#start-game-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-/* Gray gradient for the body background */
-/* Radial gray gradient for the body background */
-body {
-    background: radial-gradient(circle, #e0e0e0, #5a5a5a); /* Radial gradient from light gray to dark gray */
-    margin: 0; /* Remove default body margin */
-    padding: 0; /* Remove default body padding */
-    font-family: Arial, sans-serif; /* Optional: set a font family */
-    height: 100vh; /* Ensure background covers full viewport height */
-}
-
-#animal-image {
-    filter: blur(30px); /* Start with a significant blur */
-    transition: filter 0.3s ease; /* Smooth transition when changing blur */
-}
-
-/* Centralizar o container principal e aplicar o estilo arredondado */
-#answer-container {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    min-height: 50px; /* Altura para aparência de input */
-    max-width: 400px; /* Largura máxima do campo */
-    padding: 12px 20px; /* Espaçamento interno */
-    margin: 20px auto; /* Centralizar horizontalmente */
-    border: 2px solid #ccc; /* Borda leve */
-    border-radius: 25px; /* Arredondamento semelhante ao Material UI */
-    background-color: #ffffff; /* Fundo branco */
-    font-size: 18px; /* Tamanho da fonte */
-    color: #333; /* Cor do texto */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efeito de foco para realce */
-#answer-container:focus-within {
-    border-color: #3f51b5; /* Azul Material UI ao focar */
-    box-shadow: 0px 6px 12px rgba(63, 81, 181, 0.2); /* Intensifica a sombra */
-}
-
-/* Centralizar o conteúdo do body */
-/*body {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100vh; !* Altura total da viewport *!*/
-/*    margin: 0;*/
-/*    background: radial-gradient(circle, #e0e0e0, #5a5a5a); !* Fundo gradiente *!*/
-/*}*/
-
-/*#animal-image {*/
-/*    width: 100%; !* Ensure it fills the container *!*/
-/*    transform: scale(5); !* Zoom into the image *!*/
-/*    object-position: 50% 50%; !* Center position initially *!*/
-/*    transition: transform 0.3s ease, object-position 0.3s ease;*/
-/*}*/
-
-
-/* Styles for container with solid background (if needed) */
-/*.container {*/
+/* Login Screen */
+/*.login-screen {*/
 /*    display: flex;*/
 /*    flex-direction: column;*/
-/*    padding: 20px; !* Padding adjustment *!*/
-/*    max-width: 600px;*/
-/*    overflow: hidden; !* Prevent the zoomed image from affecting layout *!*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    background-color: #f0f0f0;*/
 /*}*/
 
-.container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60vh; /* Make container take up full viewport height */
-    max-width: 600px; /* Optional: Limit width if necessary */
-    margin: 0 auto; /* Center container horizontally in the body */
-    padding: 5%;
-    overflow: hidden; /* Prevent the zoomed image from affecting layout */
+/* Nickname Display */
+#nickname-display {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
-.animal-container {
+/* Points Display */
+.points-display {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Game Screen */
+#game-screen {
     display: flex;
     flex-direction: column;
-    padding: 20px; /* Padding adjustment */
-    max-width: 600px;
-    overflow: hidden; /* Prevent the zoomed image from affecting layout */
-}
-
-/* Center the button container */
-#button-container {
-    margin-top: 40vh;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);  /* Create 7 columns for the buttons */
-    gap: 10px;  /* Space between buttons */
-    max-width: 600px;
-    margin: 0 auto; /* Center the container itself on the page */
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
     padding: 10px;
 }
 
-/* Style for the buttons */
-.button-rounded {
-    padding: 12px 24px;  /* Adjust padding for larger buttons */
-    background-color: white;
-    color: black;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 12px; /* Increase font size for better readability */
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-/* Style for the answer buttons */
-.button-rounded-answer {
-    padding: 12px 24px;  /* Adjust padding for larger buttons */
-    background-color: white;
-    color: black;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 12px; /* Increase font size for better readability */
-    transition: background-color 0.3s ease;
-    text-align: center;
-}
-
-/* Container for the action buttons */
-#action-buttons {
+/* Animal Image Container */
+.container {
+    flex: 1;
     display: flex;
-    justify-content: center; /* Center buttons horizontally */
-    gap: 15px; /* Space between action buttons */
-    margin-top: 20px; /* Space above action buttons */
-}
-
-/* Hover effect for buttons */
-.button-rounded:hover {
-    background-color: #e0e0e0;
-}
-
-/* Make the button container more mobile-friendly */
-@media (max-width: 768px) {
-    .button-rounded {
-        padding: 10px 20px; /* Reduce padding on smaller screens */
-        font-size: 14px; /* Smaller font size for mobile */
-        margin: 6px; /* Smaller margin for mobile */
-    }
-
-    #button-container {
-        grid-template-columns: repeat(4, 1fr); /* Reduce to 4 columns on smaller screens */
-    }
-}
-
-.button-rounded:hover {
-    background-color: #e0e0e0; /* Light gray on hover */
-}
-
-.button-rounded.red {
-    background-color: #ff4d4d; /* Red background for specific state */
-}
-
-img {
-    max-width: 100%;
-    height: auto; /* Maintain image aspect ratio */
-}
-
-@media (max-width: 768px) {
-    .column {
-        width: 100%; /* Columns stack on smaller screens */
-    }
-}
-
-/* Default column styles */
-.column {
+    justify-content: center;
+    align-items: center;
+    max-height: 40%; /* Image takes 40% of the viewport height */
     width: 100%;
 }
 
-/* Adjustments for larger screens */
-@media (min-width: 768px) {
-    .column {
-        width: 50%;
+#animal-image {
+    max-width: 80%; /* Responsive scaling */
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Button Container */
+#button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Dynamic button grid */
+    gap: 5px;
+    width: 100%;
+    max-height: 20%;
+    overflow: auto; /* Allow scrolling inside the button container */
+    padding: 5px;
+}
+
+/* Answer Container */
+#answer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    min-height: 40px;
+    max-width: 80%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Action Buttons */
+#action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+    width: 100%;
+    max-height: 10%;
+}
+
+.button-rounded-answer {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    max-width: 100px;
+    margin-bottom: 30px;
+}
+
+.button-rounded-answer:hover {
+    background-color: #ccc;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    #animal-image {
+        max-width: 70%;
+    }
+
+    #answer-container {
+        font-size: 0.9rem;
+    }
+
+    .button-rounded-answer {
+        font-size: 0.7rem;
+        padding: 6px 10px;
     }
 }
 
+/* Responsive Design for Larger Screens */
+@media (min-width: 1024px) {
+    #animal-image {
+        max-width: 60%;
+    }
+}
+
+
+    /* Button Style */
+.button-rounded {
+    padding: 8px; /* Adjust padding for smaller buttons */
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Adjust font size */
+    text-align: center;
+    word-wrap: break-word; /* Allow text wrapping */
+    white-space: normal; /* Enable line breaks */
+    overflow-wrap: break-word; /* Break words if needed */
+    height: 50px; /* Set a fixed height for consistent size */
+    line-height: 1.2; /* Line spacing for multiple lines of text */
+}
+
+/* Grid Layout for Buttons */
+#button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Dynamically fit buttons */
+    gap: 10px; /* Space between buttons */
+    width: 100%;
+    max-width: 600px; /* Optional: limit maximum width */
+    padding: 10px;
+}
