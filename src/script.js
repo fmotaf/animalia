@@ -11,6 +11,42 @@ const gamePhases = [
 ];
 let currentPhase = 0;
 
+// Initialize points
+let points = 0;
+
+// Function to update points display
+function updatePointsDisplay() {
+    const pointsDisplay = document.getElementById('points-display');
+    pointsDisplay.textContent = `Points: ${points}`;
+}
+
+// Function to handle correct answer
+function handleCorrectAnswer() {
+    points += 5; // Add 5 points for a correct answer
+    updatePointsDisplay();
+    alert("Correct! You've gained 5 points!");
+}
+
+// Function to handle wrong answer
+function handleWrongAnswer() {
+    points -= 1; // Deduct 1 point for a wrong answer
+    if (points < 0) points = 0; // Prevent negative points
+    updatePointsDisplay();
+    alert("Wrong! You've lost 1 point!");
+}
+
+// Add event listeners for your game logic
+document.getElementById('validateAnswer').addEventListener('click', () => {
+    // Replace this with your validation logic
+    const isAnswerCorrect = validateAnswer(); // Your custom function
+    if (isAnswerCorrect) {
+        handleCorrectAnswer();
+    } else {
+        handleWrongAnswer();
+    }
+});
+
+
 function saveGameState() {
     const gameState = {
         currentPhase,
@@ -125,7 +161,7 @@ function displayNickname() {
     const nicknameDisplay = document.getElementById('nickname-display');
     const savedNickname = localStorage.getItem('animaliaNickname');
     if (savedNickname) {
-        nicknameDisplay.textContent = savedNickname+" está jogando!\nPontos: ";
+        nicknameDisplay.textContent = savedNickname+" está jogando!";
     }
 }
 
