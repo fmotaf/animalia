@@ -26,6 +26,21 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
 }
 
+#points-display {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+    background-color: #4caf50; /* Green background */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    position: absolute; /* Keep it fixed at the top */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 #nickname-input {
     margin: 10px;
     padding: 10px;
@@ -48,10 +63,31 @@ body {
     height: 100vh; /* Ensure background covers full viewport height */
 }
 
+/*#animal-image {*/
+/*    filter: blur(30px); !* Start with a significant blur *!*/
+/*    transition: filter 0.3s ease; !* Smooth transition when changing blur *!*/
+/*    max-width: 400px;*/
+/*    margin: 20px auto;*/
+/*    padding: 12px 20px; !* Espaçamento interno *!*/
+/*    justify-content: center; !* Center horizontally *!*/
+/*}*/
+
 #animal-image {
     filter: blur(30px); /* Start with a significant blur */
     transition: filter 0.3s ease; /* Smooth transition when changing blur */
+    max-width: 400px;
+    margin: 0 auto; /* Center horizontally */
+    padding: 12px 20px; /* Internal spacing */
+    display: block; /* Ensure it's treated as a block for proper centering */
 }
+
+.image-container {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Take the full height of the container */
+}
+
 
 /* Centralizar o container principal e aplicar o estilo arredondado */
 #answer-container {
