@@ -1,14 +1,15 @@
 // import { validateAnswer } from './utils.js';
 
 const gamePhases = [
-    { image: "assets/images/fox.png", answer: "RAPOSA" },
-    { image: "assets/images/gorila2.png", answer: "GORILA" },
-    { image: "assets/images/alligator.png", answer: "JACARE" },
-    { image: "assets/images/bear.png", answer: "URSO" },
-    { image: "assets/images/elephant.png", answer: "ELEFANTE" },
-    { image: "assets/images/lion.png", answer: "LEAO" },
-    { image: "assets/images/owl.png", answer: "CORUJA" }
+    { image: "assets/images/fox.png", answer: "RAPOSA", hint: "É um animal esperto e ágil, conhecido por sua cauda longa e peluda." },
+    { image: "assets/images/gorila2.png", answer: "GORILA", hint: "É o maior primata do mundo e vive em florestas tropicais." },
+    { image: "assets/images/alligator.png", answer: "JACARE", hint: "Reptil que vive em rios e pântanos, famoso por sua mordida poderosa." },
+    { image: "assets/images/bear.png", answer: "URSO", hint: "Animal grande e peludo, gosta muito de mel." },
+    { image: "assets/images/elephant.png", answer: "ELEFANTE", hint: "É o maior mamífero terrestre, conhecido por sua tromba." },
+    { image: "assets/images/lion.png", answer: "LEAO", hint: "É o rei da selva, famoso por sua juba majestosa." },
+    { image: "assets/images/owl.png", answer: "CORUJA", hint: "Ave noturna com olhos grandes, símbolo de sabedoria." }
 ];
+
 let currentPhase = 0;
 let points = localStorage.getItem('animaliaPoints') != null ? localStorage.getItem('animaliaPoints') : "0" ;
 
@@ -109,6 +110,7 @@ function saveGameState() {
 function updateGamePhase() {
     const animalImage = document.getElementById("animal-image");
     const answerInput = document.getElementById("answer-input");
+    const hintDisplay = document.getElementById("hint-display");
     const currentImage = gamePhases[currentPhase].image;
 
     if (!animalImage) {
@@ -122,8 +124,18 @@ function updateGamePhase() {
     // Reset image source and apply blur
     animalImage.src = currentImage;
     animalImage.style.filter = "blur(45px)"; // Add blur effect at the start
-    answerInput.value = ""; // Clear the input field
-    answerInput.focus(); // Automatically focus the input field
+    // answerInput.value = ""; // Clear the input field
+    // answerInput.focus(); // Automatically focus the input field
+
+    // Limpar o campo de entrada e o campo de dica
+    if (answerInput) {
+        answerInput.value = "";
+        answerInput.focus();
+    }
+    if (hintDisplay) {
+        hintDisplay.textContent = ""; // Limpar a dica
+    }
+
 }
 
 
@@ -206,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function displayImage() {
     const animalImage = document.getElementById("animal-image");
-    const currentImage = gamePhases[0].image;
+    const currentImage = gamePhases[currentPhase].image;
 
     if (!animalImage) {
         console.error("Animal image element not found.");
@@ -217,6 +229,21 @@ function displayImage() {
     animalImage.src = currentImage;
     animalImage.style.filter = "blur(45px)"; // Add blur effect at the start
 }
+
+// Mostrar a dica
+function showHint() {
+    const hintDisplay = document.getElementById("hint-display");
+    const currentHint = gamePhases[currentPhase].hint;
+
+    // Exibir a dica
+    hintDisplay.textContent = `Dica: ${currentHint}`;
+}
+
+// Associar o evento ao botão
+const hintButton = document.getElementById("hint-button");
+hintButton.addEventListener("click", showHint);
+
+
 
 // Start the game
 function startGame() {

@@ -93,6 +93,7 @@ body {
     margin: 0 auto; /* Center horizontally */
     padding: 12px 20px; /* Internal spacing */
     display: block; /* Ensure it's treated as a block for proper centering */
+    margin-bottom: 20px; /* Espaçamento abaixo da imagem */
 }
 
 .image-container {
@@ -304,6 +305,47 @@ body {
 .button-rounded:hover {
     background-color: #e0e0e0;
 }
+
+#game-area {
+    display: flex;
+    flex-direction: column; /* Itens empilhados verticalmente */
+    align-items: center; /* Centralizar itens */
+    text-align: center;
+}
+
+#hint-button {
+    background-color: #ff9800; /* Cor vibrante */
+    color: white; /* Texto branco */
+    border: none; /* Sem borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Texto em negrito */
+    cursor: pointer; /* Cursor de clique */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: all 0.3s ease; /* Suavidade no hover */
+    margin-top: 10px; /* Espaçamento acima do botão */
+}
+
+#hint-button:hover {
+    background-color: #e68900; /* Cor mais escura no hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Sombra mais forte */
+    transform: scale(1.05); /* Aumentar botão */
+}
+
+#hint-button:active {
+    background-color: #cc7a00; /* Cor ao clicar */
+    transform: scale(0.95); /* Reduzir tamanho levemente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra reduzida */
+}
+
+#hint-display {
+    margin-top: 15px; /* Espaçamento acima do texto de dica */
+    font-weight: bold;
+    color: #555; /* Cor sutil */
+    font-size: 14px; /* Tamanho do texto da dica */
+}
+
 
 /* Make the button container more mobile-friendly */
 @media (max-width: 768px) {
