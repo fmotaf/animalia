@@ -53,11 +53,6 @@ function getRandomPhases(gamePhases, count = 10) {
     return shuffled.slice(0, count);
 }
 
-// Usage example:
-const selectedGamePhases = getRandomPhases(gamePhases, 10);
-console.log(selectedGamePhases);
-
-
 let currentPhase = 0;
 let points = localStorage.getItem('animaliaPoints') != null ? localStorage.getItem('animaliaPoints') : "0" ;
 
@@ -141,36 +136,6 @@ function saveGameState() {
     localStorage.setItem("animaliaPoints", points); // Save points as a number
 }
 
-// Update the game phase
-// function updateGamePhase() {
-//     const animalImage = document.getElementById("animal-image");
-//     const answerInput = document.getElementById("answer-input");
-//     const hintDisplay = document.getElementById("hint-display");
-//     const currentImage = gamePhases[currentPhase].image;
-//
-//     if (!animalImage) {
-//         console.error("Animal image element not found.");
-//         return;
-//     }
-//
-//     console.log("Loading image:", currentImage);
-//     console.log("current phase value = ", currentPhase);
-//     console.log("current game Phase = ", gamePhases[currentPhase]);
-//     // Reset image source and apply blur
-//     animalImage.src = currentImage;
-//     animalImage.style.filter = "blur(45px)"; // Add blur effect at the start
-//     // answerInput.value = ""; // Clear the input field
-//     // answerInput.focus(); // Automatically focus the input field
-//
-//     // Limpar o campo de entrada e o campo de dica
-//     if (answerInput) {
-//         answerInput.value = "";
-//         answerInput.focus();
-//     }
-//     if (hintDisplay) {
-//         hintDisplay.textContent = ""; // Limpar a dica
-//     }
-// }
 function updateGamePhase() {
     const animalImage = document.getElementById("animal-image");
     const answerInput = document.getElementById("answer-input");
@@ -200,20 +165,6 @@ function updateGamePhase() {
     }
 }
 
-
-
-
-// Proceed to the next phase
-// function nextPhase() {
-//     if (currentPhase < gamePhases.length - 1) {
-//         currentPhase++;
-//         updateGamePhase();
-//         saveGameState();
-//     } else {
-//         alert("Fim do jogo!");
-//         localStorage.removeItem('animaliaGameState'); // Clear game state
-//     }
-// }
 function nextPhase() {
     if (currentPhase < selectedGamePhases.length - 1) {
         currentPhase++;
@@ -227,8 +178,6 @@ function nextPhase() {
         localStorage.removeItem("animaliaCurrentPhase"); // Clear current phase
     }
 }
-
-
 
 // Display the nickname
 function displayNickname() {
@@ -280,23 +229,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// function displayImage() {
-//     const animalImage = document.getElementById("animal-image");
-//     const currentImage = gamePhases[currentPhase].image;
-//
-//     if (!animalImage) {
-//         console.error("Animal image element not found.");
-//         return;
-//     }
-//     console.log("Loading image:", currentImage);
-//     // Reset image source and apply blur
-//     animalImage.src = currentImage;
-//     animalImage.style.filter = "blur(45px)"; // Add blur effect at the start
-// }
-
 function displayImage() {
     const animalImage = document.getElementById("animal-image");
-
+    const selectedGamePhases = JSON.parse(localStorage.getItem("animaliaSelectedPhases"));
+    console.log("selected Game Phase: ", selectedGamePhases[currentPhase]);
     // Ensure you use the correct phase from `selectedGamePhases`
     const currentImage = selectedGamePhases[currentPhase].image;
     console.log(currentImage);
@@ -312,7 +248,6 @@ function displayImage() {
     animalImage.style.filter = "blur(45px)"; // Add blur effect at the start
 }
 
-
 // Mostrar a dica
 function showHint() {
     const hintDisplay = document.getElementById("hint-display");
@@ -326,20 +261,11 @@ function showHint() {
 const hintButton = document.getElementById("hint-button");
 hintButton.addEventListener("click", showHint);
 
-
-
-// Start the game
-// function startGame() {
-//     setUpInitialGamePoints();
-//     loadGameState();
-//     displayNickname();
-//     displayImage();
-//     updatePointsDisplay();
-// }
-
 function startGame() {
     // Load previously selected phases or generate new ones
     // const currentPhase = localStorage.getItem('animaliaCurrenPhase');
+    const selectedGamePhases = getRandomPhases(gamePhases, 10);
+    console.log("selected game phases = ", selectedGamePhases);
     const savedPhases = loadSelectedPhases();
     if (savedPhases) {
         const selectedGamePhases = savedPhases;
@@ -358,27 +284,5 @@ function startGame() {
     displayImage();
     updatePointsDisplay();
 }
-
-// function startGame() {
-//     // Sempre recomeça na fase 0
-//     currentPhase = 0;
-//
-//     // Carrega as fases selecionadas previamente ou gera novas
-//     const savedPhases = loadSelectedPhases();
-//     if (savedPhases) {
-//         const selectedGamePhases = savedPhases;
-//     } else {
-//         const selectedGamePhases = getRandomPhases(gamePhases, 10);
-//         saveSelectedPhases(selectedGamePhases);
-//     }
-//
-//     // Carrega a pontuação existente
-//     points = parseInt(localStorage.getItem('animaliaPoints'), 10) || 0;
-//
-//     // Atualiza os elementos do jogo
-//     displayNickname();
-//     displayImage();
-//     updatePointsDisplay();
-// }
 
 startGame();
