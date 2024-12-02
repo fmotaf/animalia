@@ -24,6 +24,10 @@ const gamePhases = [
     { image: "assets/images/eagle.png", answer: "AGUIA", hint: "Uma ave de rapina que é símbolo de força e voa muito alto." },
 ];
 
+
+let selectedGamePhases = getRandomPhases(gamePhases, 10);
+
+
 // Save the selected game phases to localStorage
 function saveSelectedPhases(phases) {
     localStorage.setItem("animaliaSelectedPhases", JSON.stringify(phases));
@@ -105,7 +109,7 @@ function handleCorrectAnswer() {
     updatePointsDisplay();
     alert("Correto! Você ganhou 5 pontos!");
     revealImage();
-    setTimeout(nextPhase, 2000); // Proceed to the next phase
+    setTimeout(() => nextPhase(), 2000); // Proceed to the next phase
 }
 
 // Handle wrong answer
@@ -166,6 +170,7 @@ function updateGamePhase() {
 }
 
 function nextPhase() {
+    console.log("chamando nextPhase")
     if (currentPhase < selectedGamePhases.length - 1) {
         currentPhase++;
         updateGamePhase();
@@ -264,7 +269,6 @@ hintButton.addEventListener("click", showHint);
 function startGame() {
     // Load previously selected phases or generate new ones
     // const currentPhase = localStorage.getItem('animaliaCurrenPhase');
-    const selectedGamePhases = getRandomPhases(gamePhases, 10);
     console.log("selected game phases = ", selectedGamePhases);
     const savedPhases = loadSelectedPhases();
     if (savedPhases) {
