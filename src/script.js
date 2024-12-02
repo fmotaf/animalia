@@ -169,6 +169,11 @@ function updateGamePhase() {
     }
 }
 
+function loadPoints() {
+    const savedPoints = localStorage.getItem("animaliaPoints");
+    return JSON.parse(savedPoints);
+}
+
 function nextPhase() {
     console.log("chamando nextPhase")
     if (currentPhase < selectedGamePhases.length - 1) {
@@ -177,10 +182,11 @@ function nextPhase() {
         saveGameState();
         saveCurrentPhase(); // Save the updated phase index
     } else {
-        alert("Fim do jogo!");
-        localStorage.removeItem("animaliaGameState"); // Clear game state
-        localStorage.removeItem("animaliaSelectedPhases"); // Clear selected phases
-        localStorage.removeItem("animaliaCurrentPhase"); // Clear current phase
+        alert("Fim do jogo! Parabéns, sua pontuacao final foi de " + loadPoints() + "pontos, Reiniciando em 5 segundos");
+        setTimeout(() => resetGame(), 5000);
+        // localStorage.removeItem("animaliaGameState"); // Clear game state
+        // localStorage.removeItem("animaliaSelectedPhases"); // Clear selected phases
+        // localStorage.removeItem("animaliaCurrentPhase"); // Clear current phase
     }
 }
 
@@ -217,7 +223,7 @@ function saveNickname() {
 }
 
 function setUpInitialGamePoints() {
-    const pointsInput = document.getElementById('points-display');
+    // const pointsInput = document.getElementById('points-display');
     localStorage.setItem('animaliaPoints', 0);
 }
 
@@ -265,6 +271,24 @@ function showHint() {
 // Associar o evento ao botão
 const hintButton = document.getElementById("hint-button");
 hintButton.addEventListener("click", showHint);
+
+
+function resetGame() {
+    // Clear all game-related localStorage keys
+    localStorage.removeItem("animaliaGameState");
+    localStorage.removeItem("animaliaSelectedPhases");
+    localStorage.removeItem("animaliaCurrentPhase");
+    localStorage.removeItem("animaliaPoints");
+
+    // Reset global variables
+    currentPhase = 0;
+    points = 0;
+    const phases = getRandomPhases(gamePhases, 10);
+    saveSelectedPhases(phases);
+    // Restart the game
+    startGame();
+}
+
 
 function startGame() {
     // Load previously selected phases or generate new ones
